@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Books.Models;
 using System.Data.Common;
+using Microsoft.AspNetCore.Cors;
 
 namespace Books.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("corsPolicy")]
     public class BooksController : ControllerBase
     {
         private readonly BooksContext _context;

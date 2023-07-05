@@ -32,6 +32,10 @@ namespace Books
                 options.UseSqlServer(Configuration.GetConnectionString("Books"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(Options => Options.AddPolicy("corsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +52,7 @@ namespace Books
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors("corsPolicy");
         }
     }
 }
